@@ -41,3 +41,22 @@ This repository hosts 4 independent sensor profiles divided across the potentiom
 1.  **Scroll:** Twist the potentiometer knob to slide 1-by-1 through the sensor profile cards displayed on the 1.3" OLED screen.
 2.  **Flash:** Press the pushbutton on Pin D2. The screen displays a **0% to 100% loading progress bar**, downloads the matching `.bin` file from GitHub over Wi-Fi, and reboots into that sensor app.
 3.  **Exit:** Twist the potentiometer dial out of that specific application's numeric zone. The code triggers a **Software Reset Exit (`SystemReset`)** to boot the Arduino instantly back into the main Master Selection Menu!
+
+---
+
+## ⚠️ Network Troubleshooting Guide
+
+If your Arduino gets stuck or fails to download a firmware file over the travel router network, check these common fixes:
+
+### 1. Stuck on "Connecting Wi-Fi..."
+*   **Issue:** The Arduino cannot find your travel router.
+*   **Fix:** Ensure your **GL-MT300N-V2-a01** travel router is powered on and within range. Double-check that your router's **2.4GHz** wireless band is active, as the Arduino Uno R4 does not support 5GHz networks.
+
+### 2. Download Progress Bar Sticks at 0% or Fails
+*   **Issue:** The Arduino connected to the router but cannot access the internet to download from GitHub.
+*   **Fix:** Ensure your travel router actually has an active internet connection (e.g., via an ethernet cable or bridged to your phone's hotspot). If the router has no internet link, the Arduino cannot fetch the cloud files.
+*   **Path Check:** Verify that the GitHub username and repository name inside your Master Menu code exactly match your live GitHub URL. A single typo will block the download.
+
+### 3. Screen Flickers or Jumps Between Menus
+*   **Issue:** Raw electrical noise or a loose wire on the potentiometer signal.
+*   **Fix:** Ensure the middle leg of your potentiometer is firmly seated in Analog Pin **A0**. If it still jumps, check your ground (GND) wire connection to ensure clean voltage readings.
